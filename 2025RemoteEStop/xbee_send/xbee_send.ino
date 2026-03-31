@@ -19,10 +19,12 @@ void loop() {
     Serial2.write('h');
   }
   if (digitalRead(ESTOP) == HIGH && !estopped) {
+    last_write = millis();
     Serial2.write('s');
     estopped = true;
   }
   if (digitalRead(ESTOP) == LOW && estopped) {
+    last_write = millis();
     Serial2.write('g');
     estopped = false;
   }
